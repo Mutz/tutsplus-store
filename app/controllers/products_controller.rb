@@ -5,6 +5,8 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
+    @order = Order.new
+    @products.each { |product| @order.order_items.build product: product }
   end
 
   # GET /products/1

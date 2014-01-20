@@ -1,0 +1,18 @@
+<ol>
+  <% @orders.each do |order| %>
+    <li>
+
+    <h2>Order #<%= order.id %> (<%= time_ago_in_words order.created_at %> ago)</h2>
+
+    <ul>
+      <% order.order_items.each do |item| %>
+        <li>
+        	<strong><%= item.quantity %></strong> of
+        	<%= link_to item.product.title, item.product %>
+        </li>
+      <% end %>
+    </ul>
+
+    </li>
+  <% end %>
+</ol>
