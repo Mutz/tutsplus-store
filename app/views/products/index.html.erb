@@ -1,29 +1,42 @@
+<p class='right'>
+</p>
+
 <h1>Products</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<ul class='large-block-grid-3 products'>
+  <% @products.each do |product| %>
+    <li class='products products-item'>
+      <div class='products product-detail'>
+        <h3><%= link_to product.title, product %></h3>
+        <p>(<%= product.category %>)</p>
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= link_to product.title, product %></td>
-        <td><%= product.description %></td>
-        <td><%= product.category %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <blockquote>
+          <%= product.description %>
+        </blockquote>
 
-<br>
+        <ul class="button-group radius">
+          <li><%= link_to 'Edit', edit_product_path(product), class: "button tiny secondary" %></li>
+          <li><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "button tiny alert" %></li>
+        </ul>
 
-<%= link_to 'New Product', new_product_path, class: "button" %>
+        <hr/>
+
+        <div class='products product-quantity'>
+          <div class="small-5 columns">
+            <label for="right-label" class="right">
+              How much?
+            </label>
+          </div>
+
+          <div class="small-7 columns">
+            <input type='text' size='2' placeholder='0' />
+          </div>
+        </div>
+
+      </div>
+
+    </li>
+  <% end %>
+</ul>
+
+<button>Place new order</button>
